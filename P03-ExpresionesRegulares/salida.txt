@@ -1,0 +1,38 @@
+PROGRAM: modificacion.html
+
+DESCRIPTION:
+
+
+STRUCTURE:
+HTML: False
+HEAD: False
+BODY: False
+DOCTYPE: 
+
+TAGS:
+[Line 1] a
+[Line 1] / a
+[Line 2] p
+[Line 2] / p
+[Line 3] a
+[Line 3] / a
+
+ATTRIBUTES:
+[Line 1] a
+href = "https://campusvirtual.ull.es"
+class = "enlace"
+
+[Line 3] a
+href = "ftp://mi-servidor.com"
+target = "_blank"
+
+COMMENTS:
+LINKS:
+[Line 1]
+PROTOCOL: https
+TEXT: Campus Virtual
+
+[Line 3]
+PROTOCOL: ftp
+TEXT: Mi ftp
+
