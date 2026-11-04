@@ -1,0 +1,16 @@
+2
+0
+1
+3
+A
+B
+C
+A
+7
+A -> 0A (Lineal por la derecha)
+A -> 1B (Lineal por la derecha)
+A -> & (Ambas)
+B -> 0C (Lineal por la derecha)
+B -> 1A (Lineal por la derecha)
+C -> 0B (Lineal por la derecha)
+C -> 1C (Lineal por la derecha)

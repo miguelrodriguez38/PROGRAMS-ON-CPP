@@ -19,20 +19,49 @@ Archivo Gramatica.cc
 #include <fstream>
 #include <iostream>
 
+/**
+ * @brief Crea una gramática vacía.
+ */
 Gramatica::Gramatica() = default;
+
+/**
+ * @brief Añade un terminal.
+ * @param simbolo Símbolo a añadir.
+ */
 void Gramatica::AnadirTerminal(char simbolo) {
   terminales_.insert(simbolo);
 }
+
+/**
+ * @brief Añade un no terminal.
+ * @param simbolo No terminal a añadir.
+ */
 void Gramatica::AnadirNoTerminal(const std::string& simbolo) {
   no_terminales_.insert(simbolo);
 }
+
+/**
+ * @brief Define el símbolo de arranque.
+ * @param simbolo Símbolo inicial.
+ */
 void Gramatica::SetSimboloArranque(const std::string& simbolo) {
   simbolo_arranque_ = simbolo;
 }
+
+/**
+ * @brief Añade una producción.
+ * @param produccion Producción a incluir.
+ */
 void Gramatica::AnadirProduccion(const Produccion& produccion) {
   producciones_.push_back(produccion);
 }
-void Gramatica::EscribirEnFichero(const std::string& nombre_fichero) const {
+
+/**
+ * @brief Escribe la gramática en un fichero.
+ * @param nombre_fichero Nombre del fichero.
+ * @param mostrar_lineal Indica si se muestra la linealidad.
+ */
+void Gramatica::EscribirEnFichero(const std::string& nombre_fichero, bool mostrar_lineal) const {
   std::ofstream archivo(nombre_fichero);
   if (!archivo.is_open()) {
     std::cerr << "No se pudo abrir" << std::endl;
@@ -49,7 +78,11 @@ void Gramatica::EscribirEnFichero(const std::string& nombre_fichero) const {
   archivo << simbolo_arranque_ << std::endl;
   archivo << producciones_.size() << std::endl;
   for ( size_t i = 0; i < producciones_.size(); i++) {
-    archivo << producciones_[i] << std::endl;
+    archivo << producciones_[i];
+    if (mostrar_lineal) {
+      archivo << " (" << producciones_[i].TipoLineal() << ")";
+    }
+    archivo << std::endl;
   }
 
 }

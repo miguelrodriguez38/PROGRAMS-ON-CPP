@@ -19,17 +19,17 @@ Archivo Automata.cc
 #include <utility>
 
 /**
- * @brief Lee un Automata desde un flujo con el formato del fichero .Automata.
+ * @brief Lee un autómata desde un flujo.
  * @param input Flujo de entrada.
- * @param automata Autómata que se rellena.
- * @return El flujo, con failbit activado si el estado de arranque no existe.
+ * @param automata Autómata a rellenar.
+ * @return Flujo leído.
  */
 std::istream& operator>>(std::istream& input, Automata& automata) {
   int numero_estados;
   std::string linea;
   automata.LeerLineaUtil(input, linea);
   for (char simbolo : linea) {
-    if (simbolo != ' ') {                       // cambio 2: ignorar espacios
+    if (simbolo != ' ') {
       automata.alfabeto_.AnadirSimbolo(simbolo);
     }
   }
@@ -46,7 +46,7 @@ std::istream& operator>>(std::istream& input, Automata& automata) {
     std::istringstream linea_stream(linea);
     int id;
     int aceptacion;
-    int numero_transiciones;                    // cambio 1: leer el nº de transiciones
+    int numero_transiciones;
     linea_stream >> id >> aceptacion >> numero_transiciones;
     Estado estado(id, aceptacion == 1);
     for (int j = 0; j < numero_transiciones; j++) {
@@ -60,21 +60,37 @@ std::istream& operator>>(std::istream& input, Automata& automata) {
   return input;
 }
 
+/**
+ * @brief Devuelve el alfabeto del autómata.
+ * @return Alfabeto del autómata.
+ */
 const Alfabeto& Automata::GetAlfabeto() const { return alfabeto_;}
 
-
-
+/**
+ * @brief Devuelve los estados del autómata.
+ * @return Mapa de estados.
+ */
 const std::map<int, Estado>& Automata::GetEstados() const { return estados_;}
 
-
-
-
+/**
+ * @brief Devuelve el estado inicial.
+ * @return Identificador del estado de arranque.
+ */
 int Automata::GetEstadoArranque () const { return estado_arranque_;}
 
+/**
+ * @brief Genera el nombre del estado.
+ * @param id Identificador del estado.
+ * @return Nombre del estado.
+ */
 std::string Automata::NombreEstado(int id) const {
-  return std::string(1, static_cast<char>('A' + id));  // El estado 0 es el A
+  return std::string(1, static_cast<char>('A' + id));
 }
 
+/**
+ * @brief Convierte el autómata en una gramática regular.
+ * @return Gramática generada.
+ */
 Gramatica Automata::ConvertToGrammar() const {
   Gramatica gramatica;
   for ( const auto simbolos : alfabeto_.GetSimbolos() ) {

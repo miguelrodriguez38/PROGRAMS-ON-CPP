@@ -26,7 +26,7 @@ class Gramatica {
   void AnadirNoTerminal(const std::string& simbolo);
   void SetSimboloArranque(const std::string& simbolo);
   void AnadirProduccion(const Produccion& produccion);
-  void EscribirEnFichero(const std::string& nombre_fichero) const;
+  void EscribirEnFichero(const std::string& nombre_fichero, bool mostrar_lineal = false) const;
 
   
 
